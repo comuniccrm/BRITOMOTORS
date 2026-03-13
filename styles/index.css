@@ -287,12 +287,14 @@ nav {
 
 /* --- BRANDS --- */
 .brands-section {
-    padding: 10px 0 60px; /* Reduced top padding to move icons up */
+    padding: 30px 0 60px; /* Balanced top padding to avoid clipping */
     border-bottom: 1px solid var(--border-dim);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -20px; /* Pull it slightly up */
+    position: relative;
+    z-index: 20; /* Ensure it's above hero content if they overlap */
+    margin-top: -50px; /* Move it up significantly */
 }
 
 .brand-grid {
