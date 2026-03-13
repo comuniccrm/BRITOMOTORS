@@ -287,11 +287,12 @@ nav {
 
 /* --- BRANDS --- */
 .brands-section {
-    padding: 60px 0; /* Slightly more padding for a premium feel */
+    padding: 10px 0 60px; /* Reduced top padding to move icons up */
     border-bottom: 1px solid var(--border-dim);
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: -20px; /* Pull it slightly up */
 }
 
 .brand-grid {
