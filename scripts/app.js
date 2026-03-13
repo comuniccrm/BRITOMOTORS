@@ -378,10 +378,14 @@ function renderBrands(brands) {
 
 function renderNetflixGallery(cars) {
     const container = document.getElementById('netflix-car-row');
-    if (!container) return;
+    if (!container || cars.length === 0) return;
 
-    container.innerHTML = cars.map((car, index) => `
-        <div class="car-thumb" style="background-image: url('${car.img}')" onclick="setFeaturedCar(${index})">
+    // Clone the list multiple times to allow infinite loop animation
+    // We clone it at least once so the 'translateX(-50%)' works seamlessly
+    const extendedCars = [...cars, ...cars, ...cars]; 
+
+    container.innerHTML = extendedCars.map((car, index) => `
+        <div class="car-thumb" style="background-image: url('${car.img}')" onclick="setFeaturedCar(${index % cars.length})">
             <div class="thumb-overlay">
                 <span class="thumb-title">${car.brand} ${car.model}</span>
                 <span class="thumb-price">R$ ${parseFloat(car.price || 0).toLocaleString('pt-BR')}</span>

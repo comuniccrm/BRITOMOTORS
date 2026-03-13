@@ -203,17 +203,17 @@ nav {
 .car-row {
     display: flex;
     gap: 15px;
-    overflow-x: auto;
+    width: max-content; /* Ensure container matches content width */
+    animation: marquee 60s linear infinite;
     padding: 10px 0 30px;
-    scrollbar-width: none; /* Firefox */
 }
 
-.car-row::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+.car-row:hover {
+    animation-play-state: paused;
 }
 
 .car-thumb {
-    flex: 0 0 240px;
+    flex: 0 0 280px; /* Slightly larger for better Netflix look */
     aspect-ratio: 16/10;
     background-size: cover;
     background-position: center;
@@ -223,6 +223,11 @@ nav {
     position: relative;
     border: 1px solid var(--border-dim);
     overflow: hidden;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Slide half-way (since we clone the list once) */
 }
 
 .car-thumb:hover {
