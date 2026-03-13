@@ -158,6 +158,7 @@ nav {
 }
 
 .featured-info {
+    display: none; /* Hide text over featured image per user request */
     position: relative;
     z-index: 5;
     max-width: 700px;
@@ -238,6 +239,7 @@ nav {
 }
 
 .car-thumb .thumb-overlay {
+    display: none; /* Hide text on thumbnails per user request */
     position: absolute;
     bottom: 0;
     left: 0;
