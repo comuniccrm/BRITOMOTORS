@@ -287,15 +287,20 @@ nav {
 
 /* --- BRANDS --- */
 .brands-section {
-    padding: 40px 0;
+    padding: 60px 0; /* Slightly more padding for a premium feel */
     border-bottom: 1px solid var(--border-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .brand-grid {
     display: flex;
     justify-content: center;
+    align-items: center; /* Vertically center logos */
     gap: 60px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .brand-item {
@@ -308,7 +313,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 40px;
+    min-height: 50px; /* Consistent height */
 }
 
 .brand-item:hover {
