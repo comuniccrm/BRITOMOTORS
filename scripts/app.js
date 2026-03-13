@@ -125,6 +125,7 @@ async function initApp() {
     refreshUI();
     renderBrands(brands);
     renderInventory(cars);
+    renderNetflixGallery(cars); // New Netflix row renderer
     renderAdditionalBanners(banners);
     renderTestimonials(testimonials);
     observeAnimations();
@@ -188,20 +189,41 @@ function refreshUI() {
         }
     };
 
-    // Hero Content
-    updateText('hero-title', s.heroTitle, 'O PADRÃO DA EXCELÊNCIA', true);
-    updateText('hero-subtitle', s.heroSubtitle, 'Buscando as melhores ofertas em nossa curadoria premium.');
+    // Featured Car (Netflix Style)
+    const cars = JSON.parse(localStorage.getItem(STORAGE_KEYS.CARS)) || INITIAL_CARS;
+    const featuredIndex = parseInt(localStorage.getItem('brito_featured_index')) || 0;
+    const featuredCar = cars[featuredIndex] || cars[0];
 
-    const mediaContainer = document.querySelector('.hero-video-container');
-    if (mediaContainer && s.heroMedia) {
-        const isVideo = s.heroMedia.toLowerCase().endsWith('.mp4') || 
-                        s.heroMedia.startsWith('data:video') || 
-                        s.heroMedia.includes('video');
+    if (featuredCar) {
+        updateText('hero-title', `${featuredCar.brand} ${featuredCar.model}`, 'O PADRÃO DA EXCELÊNCIA', true);
+        updateText('hero-subtitle', `Ano ${featuredCar.year} • R$ ${parseFloat(featuredCar.price || 0).toLocaleString('pt-BR')} • ${featuredCar.km} KM`);
         
-        if (isVideo) {
-            mediaContainer.innerHTML = `<video autoplay muted loop playsinline src="${s.heroMedia}"></video>`;
-        } else {
-            mediaContainer.innerHTML = `<img src="${s.heroMedia}" alt="Brito Motors">`;
+        const mediaContainer = document.querySelector('.hero-video-container');
+        if (mediaContainer) {
+            mediaContainer.innerHTML = `<img src="${featuredCar.img}" alt="${featuredCar.model}" style="animation: slowZoom 20s infinite alternate;">`;
+        }
+
+        const h1 = document.getElementById('hero-cta1');
+        if (h1) {
+            h1.textContent = 'TENHO INTERESSE';
+            h1.onclick = () => contactWhatsAppCar(featuredCar.id);
+        }
+    } else {
+        // Fallback for when no inventory exists
+        updateText('hero-title', s.heroTitle, 'O PADRÃO DA EXCELÊNCIA', true);
+        updateText('hero-subtitle', s.heroSubtitle, 'Buscando as melhores ofertas em nossa curadoria premium.');
+        
+        const mediaContainer = document.querySelector('.hero-video-container');
+        if (mediaContainer && s.heroMedia) {
+            const isVideo = s.heroMedia.toLowerCase().endsWith('.mp4') || 
+                            s.heroMedia.startsWith('data:video') || 
+                            s.heroMedia.includes('video');
+            
+            if (isVideo) {
+                mediaContainer.innerHTML = `<video autoplay muted loop playsinline src="${s.heroMedia}"></video>`;
+            } else {
+                mediaContainer.innerHTML = `<img src="${s.heroMedia}" alt="Brito Motors">`;
+            }
         }
     }
 
@@ -352,6 +374,27 @@ function renderBrands(brands) {
             <img src="${imgUrl}" alt="${brand}" class="brand-logo" onerror="this.outerHTML='<span>${brand}</span>'">
         </div>`;
     }).join('');
+}
+
+function renderNetflixGallery(cars) {
+    const container = document.getElementById('netflix-car-row');
+    if (!container) return;
+
+    container.innerHTML = cars.map((car, index) => `
+        <div class="car-thumb" style="background-image: url('${car.img}')" onclick="setFeaturedCar(${index})">
+            <div class="thumb-overlay">
+                <span class="thumb-title">${car.brand} ${car.model}</span>
+                <span class="thumb-price">R$ ${parseFloat(car.price || 0).toLocaleString('pt-BR')}</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function setFeaturedCar(index) {
+    localStorage.setItem('brito_featured_index', index);
+    refreshUI();
+    // Smooth scroll to top to see transition
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function renderInventory(cars) {

@@ -34,18 +34,31 @@
     </header>
 
     <main>
-        <!-- Dynamic Hero -->
+        <!-- Dynamic Hero Netflix-Style -->
         <section class="hero">
             <div class="hero-video-container">
                 <!-- Injected by app.js -->
             </div>
+            <div class="hero-overlay-gradient"></div>
+            
             <div class="container hero-content">
-                <h1 id="hero-title">CARREGANDO...</h1>
-                <p id="hero-subtitle">Buscando as melhores ofertas em nossa curadoria premium.</p>
-                <div class="cta-group" style="display: flex; gap: 15px;">
-                    <a href="#estoque" id="hero-cta1" class="btn btn-premium">Explorar Estoque</a>
-                    <button id="hero-cta2" onclick="openFinanceModal()" class="btn btn-outline"
-                        style="background:transparent; font-family:var(--font-primary); cursor:pointer;">Financiamento</button>
+                <div class="featured-info">
+                    <h1 id="hero-title">CARREGANDO...</h1>
+                    <p id="hero-subtitle">Buscando as melhores ofertas em nossa curadoria premium.</p>
+                    <div class="cta-group" style="display: flex; gap: 15px;">
+                        <a href="#" id="hero-cta1" class="btn btn-premium">Explorar Estoque</a>
+                        <button id="hero-cta2" onclick="openFinanceModal()" class="btn btn-outline">Financiamento</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Netflix style horizontal row -->
+            <div class="browse-row-container">
+                <div class="container">
+                    <h5 class="row-label">ESTOQUE EXCLUSIVO</h5>
+                    <div class="car-row" id="netflix-car-row">
+                        <!-- Car thumbnails injected by app.js -->
+                    </div>
                 </div>
             </div>
         </section>

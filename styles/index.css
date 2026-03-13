@@ -107,14 +107,15 @@ nav {
     color: var(--accent-gold);
 }
 
-/* --- HERO --- */
+/* --- HERO & NETFLIX GALLERY --- */
 .hero {
-    height: 50vh;
+    height: 90vh;
     display: flex;
-    align-items: center;
+    align-items: flex-end; /* Align content towards the bottom but above row */
     position: relative;
     overflow: hidden;
-    padding-top: 80px;
+    padding-bottom: 250px; /* Space for the row */
+    background: var(--bg-dark);
 }
 
 .hero-video-container {
@@ -123,7 +124,7 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0;
 }
 
 .hero-video-container::after {
@@ -133,45 +134,148 @@ nav {
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0, 0, 0, var(--hero-overlay-opacity));
+    background: linear-gradient(to top, var(--bg-dark) 5%, transparent 40%),
+                linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 60%);
+    z-index: 1;
 }
 
+.hero-overlay-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to top, var(--bg-dark) 0%, transparent 100%);
+    z-index: 2;
+}
 
 .hero-video-container video,
 .hero-video-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Removed slowZoom animation for a static, clean banner presentation */
+    transition: var(--transition-slow);
+}
+
+.featured-info {
+    position: relative;
+    z-index: 5;
+    max-width: 700px;
+    margin-bottom: 20px;
+    animation: slideInUp 1s ease forwards;
 }
 
 .hero-content h1 {
-    font-size: clamp(2.5rem, 10vw, 5rem);
-    line-height: 0.9;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.85;
     font-weight: 900;
-    margin-bottom: 25px;
-    animation: slideInLeft 1s ease forwards;
+    margin-bottom: 20px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .hero-content p {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 500px;
-    margin-bottom: 40px;
-    font-weight: 300;
-    animation: slideInLeft 1.2s ease forwards;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    max-width: 550px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    opacity: 0.9;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-@keyframes slideInLeft {
+/* Row Styling */
+.browse-row-container {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.row-label {
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.car-row {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 10px 0 30px;
+    scrollbar-width: none; /* Firefox */
+}
+
+.car-row::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.car-thumb {
+    flex: 0 0 240px;
+    aspect-ratio: 16/10;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    position: relative;
+    border: 1px solid var(--border-dim);
+    overflow: hidden;
+}
+
+.car-thumb:hover {
+    transform: scale(1.1);
+    z-index: 20;
+    border-color: var(--accent-gold);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+}
+
+.car-thumb .thumb-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+    opacity: 0;
+    transition: var(--transition-fast);
+}
+
+.car-thumb:hover .thumb-overlay {
+    opacity: 1;
+}
+
+.thumb-title {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.thumb-price {
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+}
+
+@keyframes slideInUp {
     from {
         opacity: 0;
-        transform: translateX(-50px);
+        transform: translateY(30px);
     }
-
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
+}
+
+@keyframes slowZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
 }
 
 /* --- BRANDS --- */
