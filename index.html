@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brito Motors | Showroom de Veículos Premium</title>
+    <meta name="description"
+        content="A seleção definitiva de veículos seminovos premium. Encontre sua próxima conquista na Brito Motors.">
+    <link rel="stylesheet" href="styles/index.css?v=1.2">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="scripts/supa.js"></script>
+</head>
+
+<body>
+    <header id="main-header">
+        <nav class="container">
+            <div class="logo"></div>
+            <ul class="nav-links">
+                <li><a href="#estoque">Estoque</a></li>
+                <li><a onclick="openFinanceModal()" style="cursor: pointer;">Financiamento</a></li>
+                <li><a href="#contato">Localização</a></li>
+            </ul>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <a href="#" id="insta-link" target="_blank" style="color: #fff; opacity: 0.6;"><svg width="18"
+                        height="18" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.282.11-.705.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                    </svg></a>
+                <a href="#" class="btn btn-premium whatsapp-link" style="padding: 12px 25px; font-size: 0.6rem;">Falar
+                    com Consultor</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Dynamic Hero -->
+        <section class="hero">
+            <div class="hero-video-container">
+                <!-- Injected by app.js -->
+            </div>
+            <div class="container hero-content">
+                <h1 id="hero-title">CARREGANDO...</h1>
+                <p id="hero-subtitle">Buscando as melhores ofertas em nossa curadoria premium.</p>
+                <div class="cta-group" style="display: flex; gap: 15px;">
+                    <a href="#estoque" id="hero-cta1" class="btn btn-premium">Explorar Estoque</a>
+                    <button id="hero-cta2" onclick="openFinanceModal()" class="btn btn-outline"
+                        style="background:transparent; font-family:var(--font-primary); cursor:pointer;">Financiamento</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brands / Filter -->
+        <section id="marcas" class="brands-section container reveal">
+            <div class="brand-grid" id="brand-container">
+                <!-- Brands injected by app.js -->
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="sobre" class="container reveal" style="padding: 60px 0; border-bottom: 1px solid var(--border-dim);">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h4 class="section-title" id="about-title" style="margin-bottom: 30px;">SOBRE A BRITO MOTORS</h4>
+                <p id="about-text" style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; font-weight: 300;"></p>
+            </div>
+        </section>
+
+        <!-- Additional Banners (Promotions) -->
+        <section id="destaques" class="banners-extra-section container reveal" style="display: none; padding: 60px 0;">
+            <div class="extra-banners-grid" id="extra-banners-container">
+                <!-- Banners injected by app.js -->
+            </div>
+        </section>
+
+        <section id="estoque" class="inventory-section container">
+            <h4 class="section-title reveal" id="inventory-title">Seu Carro Novo Está Aqui</h4>
+            <div class="vehicle-grid" id="inventory-container">
+                <!-- Cards injected by app.js -->
+            </div>
+        </section>
+
+        <section id="financiamento" class="finance-section">
+            <div class="container reveal">
+                <h2 id="finance-title" style="font-size: 3rem; margin-bottom: 20px;">PLANO <span
+                        style="color:var(--accent-gold)">EXCLUSIVE</span></h2>
+                <p id="finance-notice" style="color: #ccc; max-width: 600px; margin: 0 auto 40px; font-size: 1.1rem;">
+                </p>
+                <button id="finance-btn" onclick="openFinanceModal()" class="btn btn-premium"
+                    style="border: none; cursor: pointer;">Simular Financiamento</button>
+            </div>
+        </section>
+
+        <!-- Testimonials (Dynamic) -->
+        <section id="depoimentos-section" class="container" style="padding: 60px 0; text-align: center;">
+            <h4 class="section-title reveal" style="margin-bottom: 60px;">Experiência Brito Motors</h4>
+            <div id="testimonials-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
+                <!-- Injected by app.js -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Professional Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col reveal">
+                    <div class="logo" style="margin-bottom: 25px;"></div>
+                    <p style="max-width: 300px;">Especialistas em veículos premium e exclusivos. Nossa missão é realizar
+                        sonhos com transparência e excelência.</p>
+                    <div class="social-links">
+                        <a href="#" id="insta-link-btm">Instagram</a>
+                        <a href="#" id="fb-link-btm">Facebook</a>
+                    </div>
+                </div>
+
+                <div class="footer-col reveal">
+                    <h4>Visite-nos</h4>
+                    <p id="address-text">Av. Europa, 1234 - São Paulo, SP</p>
+                    <p id="hours-text">Seg - Sex: 09h às 19h | Sáb: 09h às 14h</p>
+                    <div style="margin-top: 25px;">
+                        <a href="#" class="whatsapp-link"
+                            style="color: var(--accent-gold); text-decoration: none; font-size: 0.9rem; font-weight: 700;">+
+                            Falar no WhatsApp</a>
+                    </div>
+                </div>
+
+                <div id="mapa-section" class="footer-col reveal">
+                    <h4>Localização</h4>
+                    <div class="map-wrapper" id="map-container">
+                        <!-- Map injected by app.js (Admin link) -->
+                        <div
+                            style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #080808; font-size: 0.6rem; color: #333;">
+                            MAPA NÃO CONFIGURADO NO PAINEL
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="padding-top: 40px; border-top: 1px solid var(--border-dim); text-align: center;">
+                <p id="footer-text" style="color: #444; font-size: 0.65rem; letter-spacing: 2px;"></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Finance Modal Overlay -->
+    <div id="finance-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeFinanceModal()">×</button>
+            <h3 style="color: var(--accent-gold); margin-bottom: 15px; font-size: 1.2rem; letter-spacing: 2px;">
+                SIMULAÇÃO DE FINANCIAMENTO</h3>
+            <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 25px;">Preencha os dados abaixo e
+                receberemos seu pedido imediatamente via WhatsApp para uma análise rápida.</p>
+
+            <div class="form-group">
+                <input type="text" id="finance-name" class="modal-input" placeholder="Seu Nome Completo">
+            </div>
+            <div class="form-group">
+                <input type="tel" id="finance-phone" class="modal-input" placeholder="Seu Celular (com DDD)">
+            </div>
+            <div class="form-group">
+                <input type="text" id="finance-car" class="modal-input"
+                    placeholder="Qual veículo deseja simular? (Opcional)">
+            </div>
+
+            <button onclick="sendFinanceToWhatsApp()" class="btn btn-premium"
+                style="width: 100%; margin-top: 10px; border: none; cursor: pointer;">SOLICITAR ANÁLISE</button>
+        </div>
+    </div>
+
+    <script src="scripts/app.js?v=1.4"></script>
+</body>
+
+</html>
